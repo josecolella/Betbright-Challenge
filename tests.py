@@ -1,7 +1,6 @@
-import datetime
 import unittest
+import datetime
 from betbright import *
-
 
 class TestCalculateLotteryDate(unittest.TestCase):
 
@@ -55,10 +54,10 @@ class TestAnagrams(unittest.TestCase):
 
 
     def test_arc_anagram(self):
-        self.assertEqual(anagrams_in_list('car', ['arc', 'rac']), ['arc'])
+         self.assertEqual(anagrams_in_list('car', ['arc', 'rac']), ['arc'])
 
-    def test_angel_anagram(self):
-        self.assertEqual(anagrams_in_list('angel', ['angle', 'glean', 'lean']), ['angle', 'glean'])
+	  
+ 
 
     def test_red_anagram(self):
         self.assertEqual(anagrams_in_list('red', ['der', 'rde']), ['der'])
@@ -66,4 +65,4 @@ class TestAnagrams(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
