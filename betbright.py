@@ -11,8 +11,10 @@ def calculate_lottery_date(date=datetime.datetime.today()):
     Wednesday and a Saturday at 8pm. Write a function that calculates and returns the
     next valid draw date based on the current date and time and also on an optional supplied date.
     """
-    future_date = None
 
+    mapping = {(1,3): 2, (2,3): 1, (3,3): 0, (4,6): 2, (5,6): 1, (6,6): 0, (7,3): 3, (3,6): 3, (6,3): 4}
+    future_date = None
+    days = None
     lottery_hour = 20
     saturday_weekday = 6
     wednesday_weekday = 3
@@ -21,23 +23,15 @@ def calculate_lottery_date(date=datetime.datetime.today()):
     if date.isoweekday() in lottery_weekdays and date.hour == lottery_hour:
         future_date = date
     elif (date.isoweekday() >= wednesday_weekday and date.isoweekday() < saturday_weekday) or (date.hour > lottery_hour and date.hour < lottery_hour):
-        print("We go Saturdays")
-        days = abs(saturday_weekday - date.isoweekday())
+        days = mapping[(date.isoweekday(),saturday_weekday)]
     else:
-        print("We go wednesday")
-        days = abs(wednesday_weekday - date.isoweekday())
-    print(days)
-    hours_to_lottery = lottery_hour - date.hour
-    if hours_to_lottery < 0:
-        hours_to_lottery = 24 + hours_to_lottery
-        days = days - 1
-        print("Days {}".format(days))
-    print(hours_to_lottery)
-    minutes_to_lottery = (60 - date.minute) - 60
-    print(minutes_to_lottery)
-    seconds_to_lottery = (60 - date.second) - 60
-    print(seconds_to_lottery)
-    future_date = date + datetime.timedelta(days=days, hours=hours_to_lottery, minutes=minutes_to_lottery, seconds=seconds_to_lottery)
+        days = mapping[(date.isoweekday(),wednesday_weekday)]
+
+    if days:
+        hours_to_lottery = lottery_hour - date.hour
+        minutes_to_lottery = (60 - date.minute) - 60
+        seconds_to_lottery = (60 - date.second) - 60
+        future_date = date + datetime.timedelta(days=days, hours=hours_to_lottery, minutes=minutes_to_lottery, seconds=seconds_to_lottery)
 
     return future_date.strftime("%d-%m-%Y %H:%M:%S")
 
