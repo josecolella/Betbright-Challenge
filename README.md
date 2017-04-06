@@ -1,4 +1,4 @@
-# Betbright-Challenge
+# Betbright-Challenge [![Build Status](https://travis-ci.org/josecolella/Betbright-Challenge.svg?branch=master)](https://travis-ci.org/josecolella/Betbright-Challenge)
 
 Exercises for the Betbright challenge.
 
@@ -36,7 +36,8 @@ For this third exercise, I utilized the `itertools.permutations` module method t
 
 - numpy
 
-##LICENSE MIT
+
+## LICENSE MIT
 
 Copyright (c) 2017 Jose.Colella
 
